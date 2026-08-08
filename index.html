@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="techfestApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techfest · IIT Bombay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="MainCtrl as vm">
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#top" class="logo">
+                <span class="logo-mark">TF</span>
+                <span>TECHFEST<small>IIT BOMBAY · EST. 1998</small></span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#events">Events</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#sponsors">Sponsors</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#register" class="btn btn-primary">Register Now</a>
+                <button class="hamburger" ng-click="vm.navOpen = !vm.navOpen" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu" ng-class="{open: vm.navOpen}">
+            <a href="#about" ng-click="vm.navOpen=false">About</a>
+            <a href="#events" ng-click="vm.navOpen=false">Events</a>
+            <a href="#schedule" ng-click="vm.navOpen=false">Schedule</a>
+            <a href="#speakers" ng-click="vm.navOpen=false">Speakers</a>
+            <a href="#sponsors" ng-click="vm.navOpen=false">Sponsors</a>
+            <a href="#register" ng-click="vm.navOpen=false">Register Now</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <span class="eyebrow">Asia's Largest Science &amp; Tech Fest</span>
+                    <h1>Where <span class="hl">ideas ignite</span> and prototypes take flight.</h1>
+                    <p class="hero-sub">Three days of robotics wars, hackathons, astronomy nights and world-class talks
+                        — hosted on the campus of IIT Bombay. Built by students, for anyone who builds.</p>
+                    <div class="hero-cta">
+                        <a href="#register" class="btn btn-primary">Register Now →</a>
+                        <a href="#events" class="btn btn-ghost">Explore Events</a>
+                    </div>
+                    <div class="hero-meta">
+                        <span class="item"><span class="dot"></span> {{vm.eventDates}}</span>
+                        <span class="item"><span class="dot y"></span> Powai Campus, Mumbai</span>
+                        <span class="item"><span class="dot"></span> 80+ Events</span>
+                    </div>
+                </div>
+
+                <div style="position:relative;">
+                    <div class="pulse-field">
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring y"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="pulse-ring y"></div>
+                    </div>
+                    <div class="countdown-card">
+                        <span class="label">Countdown to launch</span>
+                        <div class="countdown-grid">
+                            <div class="countdown-unit">
+                                <div class="num">{{vm.countdown.days}}</div>
+                                <span class="unit">Days</span>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="num">{{vm.countdown.hours}}</div>
+                                <span class="unit">Hrs</span>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="num">{{vm.countdown.mins}}</div>
+                                <span class="unit">Min</span>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="num">{{vm.countdown.secs}}</div>
+                                <span class="unit">Sec</span>
+                            </div>
+                        </div>
+                        <div class="countdown-foot">Early-bird passes close in <strong>12 days</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stat" ng-repeat="s in vm.stats">
+                    <div class="num">{{s.value}}</div>
+                    <div class="lbl">{{s.label}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-art">
+                <svg viewBox="0 0 200 200" fill="none">
+                    <circle cx="100" cy="100" r="80" stroke="#ff6fa5" stroke-width="2" stroke-dasharray="6 8" />
+                    <circle cx="100" cy="100" r="55" fill="#ffd23f" opacity="0.5" />
+                    <path d="M60 100 L85 100 L95 75 L110 130 L120 100 L140 100" stroke="#e8437e" stroke-width="4"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="60" cy="100" r="5" fill="#e8437e" />
+                    <circle cx="140" cy="100" r="5" fill="#e8437e" />
+                </svg>
+            </div>
+            <div class="about-copy">
+                <span class="eyebrow">The Fest</span>
+                <h2 style="margin-top:16px;">Built on IIT Bombay's culture of building things that matter.</h2>
+                <p>Every winter, the Powai campus turns into a live testing ground for robotics arenas, hack rooms, and
+                    open-air stages. Thousands of students, makers and researchers arrive to compete, present and trade
+                    ideas over 72 hours.</p>
+                <p>It's run entirely by an undergraduate student team — from arena wiring to stage lighting — with
+                    mentorship from faculty and alumni across the institute.</p>
+                <ul class="about-list">
+                    <li><span class="check">✓</span> 80+ competitions across robotics, coding, design &amp; core
+                        sciences</li>
+                    <li><span class="check">✓</span> Keynotes and workshops from researchers and founders</li>
+                    <li><span class="check">✓</span> Open-campus exhibits, night markets and a closing concert</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <svg class="circuit-divider" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0 30 L200 30 L230 10 L260 50 L290 30 L1200 30" stroke="#ffd23f" stroke-width="2" fill="none" />
+    </svg>
+
+    <!-- EVENTS -->
+    <section id="events">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Flagship Events</span>
+                <h2>Pick your arena.</h2>
+                <p>From welding robots to writing algorithms — every discipline gets a stage and a prize pool.</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card" ng-repeat="e in vm.events">
+                    <span class="tag">{{e.category}}</span>
+                    <div class="icon-wrap">{{e.icon}}</div>
+                    <h3>{{e.name}}</h3>
+                    <p>{{e.desc}}</p>
+                    <div class="prize">
+                        <span>Prize Pool</span>
+                        <strong>{{e.prize}}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">Three Days</span>
+                <h2>The full run of show.</h2>
+            </div>
+            <div class="day-tabs">
+                <button class="day-tab" ng-repeat="d in vm.schedule" ng-class="{active: vm.activeDay === d.id}"
+                    ng-click="vm.activeDay = d.id">{{d.label}}</button>
+            </div>
+            <div class="timeline" ng-repeat="d in vm.schedule" ng-show="vm.activeDay === d.id">
+                <div class="tl-item" ng-repeat="item in d.items">
+                    <div class="tl-time">{{item.time}}</div>
+                    <div class="tl-body">
+                        <h4>{{item.title}}</h4>
+                        <p>{{item.desc}}</p>
+                        <span class="tl-loc">{{item.loc}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPEAKERS -->
+    <section id="speakers">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">On Stage</span>
+                <h2>Voices from the field.</h2>
+            </div>
+            <div class="speakers-grid">
+                <div class="speaker-card" ng-repeat="p in vm.speakers">
+                    <div class="avatar" ng-style="{background: p.bg}">{{p.initials}}</div>
+                    <h4>{{p.name}}</h4>
+                    <div class="role">{{p.role}}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORS -->
+    <section class="about" id="sponsors" style="padding-top:80px;">
+        <div class="container">
+            <div class="section-head center">
+                <span class="eyebrow">Powered By</span>
+                <h2>Partners &amp; sponsors.</h2>
+            </div>
+            <div class="sponsors-track">
+                <div class="sponsors-row">
+                    <div class="sponsor-chip" ng-repeat="sp in vm.sponsorsDouble">{{sp}}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTER CTA -->
+    <section id="register" style="padding-top:20px;">
+        <div class="container">
+            <div class="cta-band">
+                <div>
+                    <h2>Your seat on campus is one form away.</h2>
+                    <p>Passes include access to all competitions, workshops, the speaker lineup and the closing concert.
+                    </p>
+                </div>
+                <a href="#" class="btn btn-ghost">Get Your Pass →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#top" class="logo" style="color:#fff;">
+                        <span class="logo-mark">TF</span>
+                        <span>TECHFEST<small style="color:rgba(244,233,238,0.55);">IIT BOMBAY</small></span>
+                    </a>
+                    <p class="desc">An annual student-run science and technology festival hosted at IIT Bombay, Powai,
+                        Mumbai.</p>
+                </div>
+                <div>
+                    <h5>Explore</h5>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#schedule">Schedule</a></li>
+                        <li><a href="#speakers">Speakers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Info</h5>
+                    <ul>
+                        <li><a href="#">Travel &amp; Stay</a></li>
+                        <li><a href="#">Campus Map</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Stay in the loop</h5>
+                    <p style="font-size:13.5px; color:rgba(244,233,238,0.65);">Get event drops and deadline reminders.
+                    </p>
+                    <form class="newsletter-form" ng-submit="vm.subscribe()">
+                        <input type="email" placeholder="you@email.com" ng-model="vm.email" required>
+                        <button type="submit">Join</button>
+                    </form>
+                    <div class="form-ok" ng-if="vm.subscribed">You're on the list — see you at Techfest 👋</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© {{vm.year}} Techfest, IIT Bombay. All rights reserved.</span>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="X">X</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="YouTube">YT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
